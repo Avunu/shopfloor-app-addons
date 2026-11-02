@@ -7,7 +7,7 @@
     "version": "18.0.1.0.1",
     "category": "Inventory",
     "author": "Avunu LLC",
-    "website": "https://avu.nu",
+    "website": "https://github.com/Avunu/shopfloor-app-addons",
     "license": "AGPL-3",
     "installable": True,
     "depends": [

@@ -8,7 +8,7 @@
     "version": "18.0.1.0.0",
     "category": "Warehouse Management",
     "author": "Avunu LLC",
-    "website": "https://avu.nu",
+    "website": "https://github.com/Avunu/shopfloor-app-addons",
     "license": "LGPL-3",
     "installable": True,
     # Frontend-only augmentation of the Shopfloor mobile PWA.
