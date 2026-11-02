@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2026 Avunu LLC (avu.nu)
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <template
+        id="shopfloor_app_assets"
+        inherit_id="shopfloor_mobile_base.shopfloor_app_assets"
+    >
+        <!-- After shopfloor_mobile_base's own theme.esm.js has registered
+             its "light" theme, and well before main.esm.js reads
+             color_registry.get_themes() to build the Vuetify instance. -->
+        <script id="script_theme" position="after">
+            <t t-set="mod_name" t-value="'shopfloor_mobile_base_theme_carbon'" />
+            <script
+                id="script_theme_carbon"
+                t-attf-src="/shopfloor_mobile_base_theme_carbon/static/src/theme_carbon.esm.js?v=#{get_version(mod_name)}"
+                type="module"
+            />
+        </script>
+    </template>
+</odoo>
