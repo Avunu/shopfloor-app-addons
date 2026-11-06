@@ -101,8 +101,8 @@ class ShopfloorApp(models.Model):
         parsed = url_parse(provider["auth_link"])
         params = url_decode(parsed.query)
         state = json.loads(params["state"])
-        complete_url = "{}/shopfloor/oauth/{}/complete".format(
-            self.get_base_url(), self.tech_name
+        complete_url = (
+            f"{self.get_base_url()}/shopfloor/oauth/{self.tech_name}/complete"
         )
         # Matches core `OAuthLogin.get_state()`'s own convention exactly:
         # `state['r']` holds the url_quote_plus'd redirect target, later

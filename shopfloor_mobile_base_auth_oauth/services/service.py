@@ -26,7 +26,7 @@ class BaseShopfloorService(AbstractComponent):
         # `auth_api_key_group_ids` - the same field that field's `oauth_
         # api_key_group_id` must be a member of for a minted key to pass
         # this check; see shopfloor_app.py).
-        super()._validate_request(request)
+        res = super()._validate_request(request)
         if self.collection.auth_type == "oauth":
             if (
                 self.request.auth_api_key_id
@@ -36,3 +36,4 @@ class BaseShopfloorService(AbstractComponent):
                     "API key not allowed on app '%s'", self.collection.tech_name
                 )
                 raise Forbidden()
+        return res
