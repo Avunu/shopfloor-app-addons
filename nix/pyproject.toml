@@ -17,12 +17,9 @@ dependencies = [
     # >>> odoo-nix: install set (managed from modules.txt) >>>
     "odoo",
     "packaging",
-    "odoo-addon-shopfloor_mobile_base",
-    "odoo-addon-shopfloor_mobile_base_auth_api_key",
-    "odoo-addon-auth_oidc",
-    "odoo-addon-server_environment",
-    "odoo-addon-web_responsive",
-    "odoo-addon-web_dark_mode",
+    "odoo-addon-shopfloor_mobile_base_auth_oauth",
+    "odoo-addon-shopfloor_mobile_base_theme_carbon",
+    "odoo-addon-shopfloor_mobile_camera_scan",
     # <<< odoo-nix: install set <<<
 ]
 
@@ -31,13 +28,18 @@ dependencies = [
 # relock leaves this block alone.
 dev = [
     "debugpy",
-    "ruff",
     # Odoo's --dev=reload watcher needs a filesystem watcher it does not declare.
     "watchdog",
     # Odoo's test runner imports freezegun, and browser tours need
     # websocket-client (a missing one skips every tour silently).
     "freezegun",
     "websocket-client",
+    # auth_oidc's tests import it, and Odoo imports a loaded addon's tests.
+    "responses",
+    # shopfloor_mobile_base_theme_carbon depends on it, and it is not on PyPI: uv
+    # honours [tool.uv.sources] only for direct requirements, so it is named here
+    # for its path source to apply to the whole resolution.
+    "odoo-addon-web_theme_carbon",
 ]
 
 [tool.uv]
@@ -168,6 +170,9 @@ constraint-dependencies = ["setuptools<81"]
     "odoo-addon-shopfloor_example" = { path = "../.odoo-nix/modules/shopfloor-app/shopfloor_example" }
     "odoo-addon-shopfloor_mobile_base" = { path = "../.odoo-nix/modules/shopfloor-app/shopfloor_mobile_base" }
     "odoo-addon-shopfloor_mobile_base_auth_api_key" = { path = "../.odoo-nix/modules/shopfloor-app/shopfloor_mobile_base_auth_api_key" }
+    "odoo-addon-shopfloor_mobile_base_auth_oauth" = { path = "../shopfloor_mobile_base_auth_oauth", editable = true }
+    "odoo-addon-shopfloor_mobile_base_theme_carbon" = { path = "../shopfloor_mobile_base_theme_carbon", editable = true }
+    "odoo-addon-shopfloor_mobile_camera_scan" = { path = "../shopfloor_mobile_camera_scan", editable = true }
     "odoo-addon-shopfloor_rest_log" = { path = "../.odoo-nix/modules/shopfloor-app/shopfloor_rest_log" }
     "odoo-addon-shopfloor_workstation" = { path = "../.odoo-nix/modules/shopfloor-app/shopfloor_workstation" }
     "odoo-addon-shopfloor_workstation_label_printer" = { path = "../.odoo-nix/modules/shopfloor-app/shopfloor_workstation_label_printer" }
@@ -225,6 +230,7 @@ constraint-dependencies = ["setuptools<81"]
     "odoo-addon-web_session_auto_close" = { path = "../.odoo-nix/modules/web/web_session_auto_close" }
     "odoo-addon-web_sort_menu" = { path = "../.odoo-nix/modules/web/web_sort_menu" }
     "odoo-addon-web_systray_button_init_action" = { path = "../.odoo-nix/modules/web/web_systray_button_init_action" }
+    "odoo-addon-web_theme_carbon" = { path = "../.odoo-nix/modules/web-addons/web_theme_carbon" }
     "odoo-addon-web_theme_classic" = { path = "../.odoo-nix/modules/web/web_theme_classic" }
     "odoo-addon-web_time_range_menu_custom" = { path = "../.odoo-nix/modules/web/web_time_range_menu_custom" }
     "odoo-addon-web_timeline" = { path = "../.odoo-nix/modules/web/web_timeline" }
@@ -267,15 +273,17 @@ packages = []
 # >>> odoo-nix: sdist build deps (managed) >>>
 "docopt" = ["setuptools"]
 "odoo" = ["setuptools"]
-"odoo-addon-auth-oidc" = ["setuptools"]
-"odoo-addon-server-environment" = ["setuptools"]
-"odoo-addon-shopfloor-mobile-base" = ["setuptools"]
-"odoo-addon-shopfloor-mobile-base-auth-api-key" = ["setuptools"]
-"odoo-addon-web-dark-mode" = ["setuptools"]
-"odoo-addon-web-responsive" = ["setuptools"]
+"odoo-addon-web-theme-carbon" = ["setuptools"]
 "ofxparse" = ["setuptools"]
 "pyquerystring" = ["setuptools"]
 "python-ldap" = ["setuptools"]
 "rjsmin" = ["setuptools"]
 "vobject" = ["setuptools"]
 # <<< odoo-nix: sdist build deps (managed) <<<
+
+[tool.odoo-nix]
+schema = 1
+profile = "github:Avunu/odoo-standards-profile/v1"
+
+[tool.odoo-nix.icons]
+src-icon = "assets/icons/shopfloor-app-addons.png"
