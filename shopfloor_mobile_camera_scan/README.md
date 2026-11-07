@@ -20,18 +20,18 @@ camera → decode barcode ──► searchbar.$emit("found", {text, type}) ─�
                                      ▲ identical to a wedge/keyboard scan
 ```
 
-- **[templates/assets.xml](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/templates/assets.xml)** — inherits
-  `shopfloor_mobile_base.shopfloor_app_assets` and injects our JS/CSS right before the
-  main app script (so the override registers before the Vue root mounts).
-- **[static/src/js/searchbar_camera.esm.js](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/static/src/js/searchbar_camera.esm.js)** —
-  extends the global `searchbar` component (`Vue.component("searchbar")`), adding a
+- **[templates/assets.xml](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/templates/assets.xml)**
+  — inherits `shopfloor_mobile_base.shopfloor_app_assets` and injects our JS/CSS right
+  before the main app script (so the override registers before the Vue root mounts).
+- **[static/src/js/searchbar_camera.esm.js](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/static/src/js/searchbar_camera.esm.js)**
+  — extends the global `searchbar` component (`Vue.component("searchbar")`), adding a
   `mdi-barcode-scan` button. On decode it calls `this.$emit("found", {text, type})` —
   byte-for-byte what the wedge path emits.
-- **[static/src/js/camera_scanner.esm.js](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/static/src/js/camera_scanner.esm.js)** — a
-  singleton fullscreen camera overlay. Uses the native `BarcodeDetector` API where
+- **[static/src/js/camera_scanner.esm.js](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/static/src/js/camera_scanner.esm.js)**
+  — a singleton fullscreen camera overlay. Uses the native `BarcodeDetector` API where
   present, and falls back to **html5-qrcode** (the engine that runs on iPad Safari).
-- **[static/src/css/camera_scan.css](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/static/src/css/camera_scan.css)** — button and
-  overlay styling with safe-area insets for iPad.
+- **[static/src/css/camera_scan.css](https://github.com/Avunu/shopfloor-app-addons/blob/18.0/shopfloor_mobile_camera_scan/static/src/css/camera_scan.css)**
+  — button and overlay styling with safe-area insets for iPad.
 
 Because the override targets the _global_ component, the camera button appears on **all
 scenarios automatically** — including third-party ones — with zero per-scenario code.
