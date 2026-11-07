@@ -1885,7 +1885,7 @@ requires-dist = [
 
 [[package]]
 name = "odoo-addon-shopfloor-mobile-camera-scan"
-version = "18.0.1.0.0.4"
+version = "18.0.1.0.0.5"
 source = { editable = "../shopfloor_mobile_camera_scan" }
 dependencies = [
     { name = "odoo" },
