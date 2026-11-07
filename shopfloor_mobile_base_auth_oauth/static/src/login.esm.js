@@ -3,15 +3,17 @@
  * License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
  */
 
-import {translation_registry} from "/shopfloor_mobile_base/static/src/services/translation_registry.esm.js";
-import {auth_handler_registry} from "/shopfloor_mobile_base/static/src/services/auth_handler_registry.esm.js";
-import event_hub from "/shopfloor_mobile_base/static/src/services/event_hub.esm.js";
+/* global Vue */
+
 // Reused verbatim: an oauth-flavored app's ongoing REST calls carry the
 // exact same API-KEY header as an api_key-flavored app, because the
 // resolved key ends up in the same `$root.apikey` config-registry slot
 // either way. Importing this also registers that "apikey" config-registry
 // slot as a side effect, exactly as it does for the sibling module.
 import {ApiKeyAuthHandler} from "/shopfloor_mobile_base_auth_api_key/static/src/login.esm.js";
+import {auth_handler_registry} from "/shopfloor_mobile_base/static/src/services/auth_handler_registry.esm.js";
+import event_hub from "/shopfloor_mobile_base/static/src/services/event_hub.esm.js";
+import {translation_registry} from "/shopfloor_mobile_base/static/src/services/translation_registry.esm.js";
 
 auth_handler_registry.add("oauth", ApiKeyAuthHandler);
 
@@ -56,7 +58,11 @@ let _oauth_error = null;
 event_hub.$on("app:mounted", function (root) {
     if (_oauth_key) {
         root.apikey = _oauth_key;
-        root.login({preventDefault: function () {}});
+        root.login({
+            preventDefault: function () {
+                // No DOM event here: login() only calls this to stop a form submit.
+            },
+        });
     } else if (_oauth_error) {
         // `login-page`'s own `login:failure` listener (registered in its
         // `mounted()`, already run by this point) shows the same generic

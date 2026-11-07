@@ -36,7 +36,6 @@ class AuthOauthProvider(models.Model):
         "generated in the Apple Developer portal's Keys section.",
     )
     apple_private_key = fields.Text(
-        string="Apple Private Key",
         help="The contents of the .p8 private key file downloaded when "
         "the key above was generated. A real secret at rest - set this "
         "via a server_environment config file where the deployment "
@@ -62,8 +61,10 @@ class AuthOauthProvider(models.Model):
         self.ensure_one()
         if jwt is None:
             raise UserError(
-                _("python-jose is not installed; cannot mint an Apple "
-                  "client secret.")
+                _(
+                    "python-jose is not installed; cannot mint an Apple "
+                    "client secret."
+                )
             )
         now = int(time.time())
         claims = {
@@ -94,8 +95,7 @@ class AuthOauthProvider(models.Model):
         for provider in providers:
             provider.client_secret = provider._mint_apple_client_secret()
             _logger.info(
-                "Rotated the Apple client secret for auth.oauth.provider "
-                "%s (%s).",
+                "Rotated the Apple client secret for auth.oauth.provider %s (%s).",
                 provider.name,
                 provider.id,
             )

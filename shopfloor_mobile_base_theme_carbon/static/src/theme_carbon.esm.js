@@ -3,6 +3,8 @@
  * License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
  */
 
+/* global shopfloor_app_info */
+
 import {color_registry} from "/shopfloor_mobile_base/static/src/services/color_registry.esm.js";
 
 /**

@@ -11,18 +11,14 @@
  * augmented with the camera button. If the upstream searchbar template
  * changes, re-sync this copy.
  */
+
+/* global Vue */
+
 import cameraScanner from "./camera_scanner.esm.js";
 
 const BaseSearchbar = Vue.component("searchbar");
 
-if (!BaseSearchbar) {
-    // Ordering guarantees this shouldn't happen, but fail loudly if it does.
-    // eslint-disable-next-line no-console
-    console.error(
-        "[shopfloor_mobile_camera_scan] global 'searchbar' component not found; " +
-            "camera button not injected."
-    );
-} else {
+if (BaseSearchbar) {
     Vue.component(
         "searchbar",
         BaseSearchbar.extend({
@@ -37,7 +33,7 @@ if (!BaseSearchbar) {
                     const text = this.autotrim ? String(code).trim() : code;
                     // Mirror searchbar.search(): hand the value to the parent
                     // screen exactly as a typed/wedge scan would.
-                    this.$emit("found", { text: text, type: this.input_data_type });
+                    this.$emit("found", {text: text, type: this.input_data_type});
                     if (this.reset_on_submit && this.reset) {
                         this.reset();
                     }
@@ -75,5 +71,11 @@ if (!BaseSearchbar) {
   </v-form>
   `,
         })
+    );
+} else {
+    // Ordering guarantees this shouldn't happen, but fail loudly if it does.
+    console.error(
+        "[shopfloor_mobile_camera_scan] global 'searchbar' component not found; " +
+            "camera button not injected."
     );
 }

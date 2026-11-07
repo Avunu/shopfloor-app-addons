@@ -50,14 +50,14 @@ class NativeEngine {
 
     async start() {
         const formats = await window.BarcodeDetector.getSupportedFormats();
-        this.detector = new window.BarcodeDetector({ formats });
+        this.detector = new window.BarcodeDetector({formats});
         this.video = document.createElement("video");
         this.video.setAttribute("playsinline", "true");
         this.video.muted = true;
         this.video.className = "sf-cam-video";
         this.container.appendChild(this.video);
         this.stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: { ideal: "environment" } },
+            video: {facingMode: {ideal: "environment"}},
         });
         this.video.srcObject = this.stream;
         await this.video.play();
@@ -73,8 +73,8 @@ class NativeEngine {
             if (codes && codes.length) {
                 this.onDetect(codes[0].rawValue);
             }
-        } catch (e) {
-            /* transient per-frame decode error */
+        } catch {
+            /* Transient per-frame decode error */
         }
         this.raf = requestAnimationFrame(this._tick.bind(this));
     }
@@ -109,13 +109,13 @@ class Html5QrcodeEngine {
         if (!window.Html5Qrcode) {
             await loadScript(HTML5_QRCODE_URL);
         }
-        this.instance = new window.Html5Qrcode(this.containerId, { verbose: false });
+        this.instance = new window.Html5Qrcode(this.containerId, {verbose: false});
         await this.instance.start(
-            { facingMode: "environment" },
-            { fps: 10, qrbox: undefined },
+            {facingMode: "environment"},
+            {fps: 10, qrbox: undefined},
             (decodedText) => this.onDetect(decodedText),
             function () {
-                /* per-frame "not found" — ignore */
+                /* Per-frame "not found" — ignore */
             }
         );
         this.running = true;
@@ -125,13 +125,13 @@ class Html5QrcodeEngine {
         if (this.instance && this.running) {
             try {
                 await this.instance.stop();
-            } catch (e) {
-                /* already stopped */
+            } catch {
+                /* Already stopped */
             }
             try {
                 this.instance.clear();
-            } catch (e) {
-                /* ignore */
+            } catch {
+                /* Ignore */
             }
         }
         this.running = false;
@@ -150,7 +150,8 @@ class CameraScanner {
 
     async open(onDetect) {
         if (this.overlay) {
-            return; // already open
+            // Already open
+            return;
         }
         this.onDetect = onDetect;
         this._handling = false;
@@ -166,8 +167,8 @@ class CameraScanner {
         if (this.engine) {
             try {
                 await this.engine.stop();
-            } catch (e) {
-                /* ignore */
+            } catch {
+                /* Ignore */
             }
             this.engine = null;
         }
@@ -222,11 +223,11 @@ class CameraScanner {
         if (navigator.vibrate) {
             navigator.vibrate(60);
         }
-        const cb = this.onDetect;
+        const onDetect = this.onDetect;
         // Close first so the camera is released before the scenario advances.
         this.close();
-        if (cb) {
-            cb(code);
+        if (onDetect) {
+            onDetect(code);
         }
     }
 }
