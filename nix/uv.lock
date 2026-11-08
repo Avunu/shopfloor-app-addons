@@ -1847,7 +1847,7 @@ wheels = [
 
 [[package]]
 name = "odoo-addon-shopfloor-mobile-base-auth-oauth"
-version = "18.0.1.0.2.4"
+version = "18.0.1.0.2.5"
 source = { editable = "../shopfloor_mobile_base_auth_oauth" }
 dependencies = [
     { name = "odoo" },
@@ -1868,7 +1868,7 @@ requires-dist = [
 
 [[package]]
 name = "odoo-addon-shopfloor-mobile-base-theme-carbon"
-version = "18.0.1.0.1.3"
+version = "18.0.1.0.1.4"
 source = { editable = "../shopfloor_mobile_base_theme_carbon" }
 dependencies = [
     { name = "odoo" },
@@ -1885,7 +1885,7 @@ requires-dist = [
 
 [[package]]
 name = "odoo-addon-shopfloor-mobile-camera-scan"
-version = "18.0.1.0.0.3"
+version = "18.0.1.0.0.5"
 source = { editable = "../shopfloor_mobile_camera_scan" }
 dependencies = [
     { name = "odoo" },
