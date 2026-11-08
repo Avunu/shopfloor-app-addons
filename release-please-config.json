@@ -1,0 +1,100 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "include-component-in-tag": true,
+  "include-v-in-tag": false,
+  "tag-separator": ".",
+  "separate-pull-requests": false,
+  "group-pull-request-title-pattern": "chore(release): release ${branch}",
+  "pull-request-header": "Merging this releases the addons below on 18.0: release-please tags each `<addon>-18.0.x.y.z` and publishes its GitHub release, which carries the addon's zip and wheel.",
+  "changelog-sections": [
+    {
+      "type": "feat",
+      "section": "Features"
+    },
+    {
+      "type": "fix",
+      "section": "Bug Fixes"
+    },
+    {
+      "type": "perf",
+      "section": "Performance Improvements"
+    },
+    {
+      "type": "revert",
+      "section": "Reverts"
+    },
+    {
+      "type": "deps",
+      "section": "Dependencies"
+    },
+    {
+      "type": "docs",
+      "section": "Documentation",
+      "hidden": true
+    },
+    {
+      "type": "style",
+      "section": "Styles",
+      "hidden": true
+    },
+    {
+      "type": "chore",
+      "section": "Miscellaneous Chores",
+      "hidden": true
+    },
+    {
+      "type": "refactor",
+      "section": "Code Refactoring",
+      "hidden": true
+    },
+    {
+      "type": "test",
+      "section": "Tests",
+      "hidden": true
+    },
+    {
+      "type": "build",
+      "section": "Build System",
+      "hidden": true
+    },
+    {
+      "type": "ci",
+      "section": "Continuous Integration",
+      "hidden": true
+    }
+  ],
+  "packages": {
+    "shopfloor_mobile_base_auth_oauth": {
+      "component": "shopfloor_mobile_base_auth_oauth-18.0",
+      "exclude-paths": [
+        "shopfloor_mobile_base_auth_oauth/tests",
+        "shopfloor_mobile_base_auth_oauth/readme",
+        "shopfloor_mobile_base_auth_oauth/i18n",
+        "shopfloor_mobile_base_auth_oauth/i18n_extra",
+        "shopfloor_mobile_base_auth_oauth/static/description"
+      ]
+    },
+    "shopfloor_mobile_base_theme_carbon": {
+      "component": "shopfloor_mobile_base_theme_carbon-18.0",
+      "exclude-paths": [
+        "shopfloor_mobile_base_theme_carbon/tests",
+        "shopfloor_mobile_base_theme_carbon/readme",
+        "shopfloor_mobile_base_theme_carbon/i18n",
+        "shopfloor_mobile_base_theme_carbon/i18n_extra",
+        "shopfloor_mobile_base_theme_carbon/static/description"
+      ]
+    },
+    "shopfloor_mobile_camera_scan": {
+      "component": "shopfloor_mobile_camera_scan-18.0",
+      "exclude-paths": [
+        "shopfloor_mobile_camera_scan/tests",
+        "shopfloor_mobile_camera_scan/readme",
+        "shopfloor_mobile_camera_scan/i18n",
+        "shopfloor_mobile_camera_scan/i18n_extra",
+        "shopfloor_mobile_camera_scan/static/description"
+      ]
+    }
+  }
+}
+
