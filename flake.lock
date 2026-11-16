@@ -505,11 +505,11 @@
     "oca-server-env": {
       "flake": false,
       "locked": {
-        "lastModified": 1790750934,
-        "narHash": "sha256-YCoXQI63MlABKBSMMJHtuRAVpOBQeIawt32WLiMemcg=",
+        "lastModified": 1792160918,
+        "narHash": "sha256-Trnfj3MH0Kk9LDAG8I701wdKv41YNHgiq/GCpZj1hAs=",
         "owner": "OCA",
         "repo": "server-env",
-        "rev": "92302cdf10c175646231bdcb8005c63e5c561724",
+        "rev": "3387a26046febeae0743646fea6846c5386a53b9",
         "type": "github"
       },
       "original": {
