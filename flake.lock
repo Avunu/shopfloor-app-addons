@@ -471,11 +471,11 @@
     "oca-rest-framework": {
       "flake": false,
       "locked": {
-        "lastModified": 1793614525,
-        "narHash": "sha256-QDoD3y9qWe/MQRdiPzi/mJiVX2rImdcxceN+i/iuK/I=",
+        "lastModified": 1794216953,
+        "narHash": "sha256-dH9qohOpl1lUs65hDYtmnyrFEBGSFZIM0uBL6507tr8=",
         "owner": "OCA",
         "repo": "rest-framework",
-        "rev": "deb569883ca61251d4ca102836aceb4563951155",
+        "rev": "7b9bdd06c41bb9ed05a32fd587b5104b2bc7201d",
         "type": "github"
       },
       "original": {
