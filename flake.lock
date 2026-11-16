@@ -573,11 +573,11 @@
     "oca-web-api": {
       "flake": false,
       "locked": {
-        "lastModified": 1793623358,
-        "narHash": "sha256-Zt006uIEd5ENcBq/Lo0PXq4WJ/ugcAOpNocrtJxq0vc=",
+        "lastModified": 1794159998,
+        "narHash": "sha256-uR0OP7XcR08vxRtr9UFV2sRH0bQ33wk99Bqu/rzYw/A=",
         "owner": "OCA",
         "repo": "web-api",
-        "rev": "cdf10e1f11eaaabbbdaec729f9748e63a53837d3",
+        "rev": "50c4d892f8830161a61d1e60dd58a6c92f1e18c0",
         "type": "github"
       },
       "original": {
