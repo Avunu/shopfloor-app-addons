@@ -1922,7 +1922,7 @@ wheels = [
 
 [[package]]
 name = "odoo-addon-web-theme-carbon"
-version = "18.0.1.0.0"
+version = "18.0.1.0.1"
 source = { directory = "../.odoo-nix/modules/web-addons/web_theme_carbon" }
 dependencies = [
     { name = "odoo" },
