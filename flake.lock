@@ -32,11 +32,11 @@
     "avunu-web-addons": {
       "flake": false,
       "locked": {
-        "lastModified": 1793998831,
-        "narHash": "sha256-aYqhODcl59t6x22zNAyq8kSDGrpWXdOwMXkZQAIMh+U=",
+        "lastModified": 1794245017,
+        "narHash": "sha256-zcosJCC8QuVUO/t3aJv61B8qZrvgJ/NmoV2fgQRQ7zU=",
         "owner": "Avunu",
         "repo": "web-addons",
-        "rev": "7c6e703481ee9fe99e9db0db209ebf661898ff2b",
+        "rev": "d78c8467926ade6621040323124acf77cd84b240",
         "type": "github"
       },
       "original": {
